@@ -1,66 +1,146 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Carousel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este es un proyecto postulación de empleos (simplificado) en Tailwind CSS y Alpine Js. Este proyecto utiliza Laravel 11.
 
-## About Laravel
+## Requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   PHP >= `8.2`
+-   Composer
+-   MySQL u otro sistema de base de datos compatible
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instalación
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Sigue estos pasos para configurar el proyecto en tu entorno local:
 
-## Learning Laravel
+### 1. Clonar el repositorio
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+git clone https://github.com/DonMartinWorks/Worktopia
+cd Worktopia
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<p>Este comando clona el repositorio del proyecto y navega a la carpeta del proyecto.</p>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Instalar dependencias
 
-## Laravel Sponsors
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+<p>Este comando instala todas las dependencias de PHP necesarias para el proyecto, que están listadas en el archivo `composer.json.`</p>
 
-### Premium Partners
+3. Configurar el archivo `.env`
+   Renombra el archivo `.env`.example a `.env` y configura tus variables de entorno. Asegúrate de que tus credenciales de base de datos estén correctas.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+cp .env.example .env
+```
 
-## Contributing
+#### Archivo `.env`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+_El archivo `.env` en Laravel es un archivo de configuración que almacena variables de entorno para una aplicación. Estas variables se utilizan para configurar la aplicación en diferentes entornos, como desarrollo, pruebas y producción. El archivo `.env` se utiliza para almacenar información confidencial, como contraseñas de bases de datos, claves de API y credenciales de correo electrónico, que no deben ser compartidas en el código fuente de la aplicación. En su lugar, se almacenan en el archivo `.env` y se acceden a través de la función env en Laravel._
 
-## Code of Conduct
+<p>Este comando copia el archivo `.env.example` a `.env` y permite que configures tus variables de entorno.</p>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Generar la clave de aplicación
 
-## Security Vulnerabilities
+```bash
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Este comando genera una nueva clave de aplicación en el archivo .env. Esta clave se utiliza para cifrar datos de sesión y otros datos sensibles.
 
-## License
+5. Migrar la base de datos
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan migrate
+```
+
+Este comando ejecuta las migraciones y crea todas las tablas necesarias en tu base de datos según los archivos de migración en la carpeta database/migrations.
+
+6. Poblar la base de datos
+   Si tienes seeders configurados para poblar la base de datos con datos de prueba, ejecuta el siguiente comando:
+
+```bash
+php artisan db:seed
+```
+
+7. Crear el Enlace Simbólico
+   Ejecuta el siguiente comando para crear el enlace simbólico para el almacenamiento público:
+
+```bash
+php artisan storage:link
+```
+
+8. En el archivo `.env` (linea 6)
+   Asegúrate de que tu archivo `.env` tenga la variable APP_URL configurada correctamente:
+
+```bash
+APP_URL=http://localhost:8000
+```
+
+## Envio de correos electrónicos
+
+_Puedes utlizar cualquier paquete de envio de emails por api, pero te recomiendo el uso de <a href="https://mailtrap.io/">`Mailtrap`</a>_
+
+1. _Primero debes crear una cuenta, después crea un inbox, en la sección SMTP Settings > SMTP / POP3 > en Integrations pon Laravel 9+_
+2. _Coloca estas credenciales en tu archivo `.env` reemplazando desde la linea `51 a la 55`._
+
+```bash
+    MAIL_MAILER=smtp
+    MAIL_HOST=sandbox.smtp.mailtrap.io
+    MAIL_PORT=2525
+    MAIL_USERNAME=
+    MAIL_PASSWORD=
+```
+
+Este comando ejecuta los seeders y pobla la base de datos con los datos de ejemplo definidos.
+
+9. Compilar los assets front-end
+
+```bash
+npm install
+```
+
+```bash
+npm run build
+```
+
+```bash
+npm run dev
+```
+
+Estos comandos instalan las dependencias front-end y compilan los assets utilizando Vite.
+
+10. Iniciar el servidor de desarrollo
+
+```bash
+php artisan serve
+```
+
+Este comando inicia un servidor de desarrollo local para que puedas acceder a tu aplicación en http://localhost:8000.
+
+Comandos Útiles
+Clear Cache: Limpia el caché de la aplicación
+
+```bash
+php artisan cache:clear
+```
+
+Config Cache: Recompila la caché de configuración
+
+```bash
+php artisan config:cache
+```
+
+Route Cache: Recompila la caché de rutas
+
+```bash
+php artisan route:cache
+```
+
+View Cache: Recompila la caché de vistas
+
+```bash
+php artisan view:cache
+```
