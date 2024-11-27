@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\JobType;
+
 use App\Models\User;
+use App\Enums\JobType;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

@@ -10,7 +10,8 @@
             <h2 class="text-xl font-semibold">
                 {{ $work->title }}
             </h2>
-            <p class="text-sm text-gray-500">{{ $work->job_type }}</p>
+
+            <x-partials.job-type :work="$work->job_type" />
         </div>
     </div>
 
@@ -19,25 +20,31 @@
     </p>
 
     <ul class="my-4 bg-gray-100 p-4 rounded">
-        <li class="mb-2"><strong>
-                {{ __('Salary') }}&#58;</strong>&nbsp;&#x24;{{ number_format($work->salary) }}
+        <li class="mb-2 flow-root">
+            <strong class="float-start">{{ __('Salary') }}&#58;</strong>&nbsp;&#x24;{{ number_format($work->salary) }}
+
+            <div class="float-end">
+                @if ($work->remote)
+                    <span class=" bg-cyan-500 border-2 border-cyan-600 text-gray-50 rounded-md px-2 py-1 ml-2"
+                        title="{{ __('Remote') }}">
+                        <i class="fa-solid fa-globe mr-2"></i><span
+                            class="text-gray-50 font-semibold">{{ __('Remote') }}</span>
+                    </span>
+                @else
+                    <span class="text-md bg-rose-500 border-2 border-rose-600 text-white rounded-md px-2 py-1 ml-2"
+                        title="{{ __('On-site') }}">
+                        <i class="fa-solid fa-building mr-2"></i><span
+                            class="text-white font-semibold">{{ __('On-site') }}</span>
+                    </span>
+                @endif
+            </div>
         </li>
+
         <li class="mb-2">
             <strong>{{ __('Location') }}&#58;</strong>&nbsp;{{ $work->city }}&#44;&nbsp;<span
-                class="text-gray-500 font-medium underline underline-offset-2">{{ $work->state }}</span>
-            @if ($work->remote)
-                <span class="text-md bg-cyan-500 border-2 border-cyan-600 text-gray-50 rounded-md px-2 py-1 ml-2"
-                    title="{{ __('Remote') }}">
-                    <i class="fa-solid fa-globe mr-2"></i><span
-                        class="text-gray-50 font-semibold">{{ __('Remote') }}</span>
-                </span>
-            @else
-                <span class="text-md bg-rose-500 border-2 border-rose-600 text-white rounded-md px-2 py-1 ml-2"
-                    title="{{ __('On-site') }}">
-                    <i class="fa-solid fa-building mr-2"></i><span
-                        class="text-white font-semibold">{{ __('On-site') }}</span>
-                </span>
-            @endif
+                class="text-gray-500 font-medium underline underline-offset-2">
+                {{ $work->state }}
+            </span>
         </li>
 
         @if ($work->tags)

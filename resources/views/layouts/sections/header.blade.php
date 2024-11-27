@@ -11,7 +11,7 @@
                 {{ __('Home') }}
             </x-nav-link>
 
-            <x-nav-link url="#" :active="Route::currentRouteNamed('#')">
+            <x-nav-link url="{{ route('job.index') }}" :active="Route::currentRouteNamed('job.index')">
                 {{ __('All Jobs') }}
             </x-nav-link>
 
@@ -51,7 +51,7 @@
             {{ __('Home') }}
         </x-nav-link>
 
-        <x-nav-link url="#" :mobile="true" :active="Route::currentRouteNamed('#')">
+        <x-nav-link url="{{ route('job.index') }}" :mobile="true" :active="Route::currentRouteNamed('job.index')">
             {{ __('All Jobs') }}
         </x-nav-link>
 

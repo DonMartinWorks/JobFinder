@@ -1,6 +1,6 @@
 <?php
 
-use App\JobType;
+use App\Enums\JobType as EnumJobType;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('salary')->default(1);
             $table->string('tags')->nullable();
-            $table->enum('job_type', array_map(fn($type) => $type->value, JobType::cases()))->default(JobType::FullTime->value);
+            $table->enum('job_type', array_map(fn($type) => $type->value, EnumJobType::cases()))->default(EnumJobType::FullTime->value);
             $table->boolean('remote')->default(0);
             $table->text('requirements')->nullable();
             $table->string('benefits')->nullable();

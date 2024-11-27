@@ -18,7 +18,7 @@
     </div>
 
     <div class="mb-3">
-        <a href="#"
+        <a href="{{ route('job.index') }}"
             class="block text-xl text-center hover:text-yellow-400 hover:underline hover:underline-offset-2 transition-all">
             <i class="fa-solid fa-arrow-rotate-right mr-3"></i>{{ __('Show all jobs') }}
         </a>
