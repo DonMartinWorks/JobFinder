@@ -11,7 +11,7 @@
                 {{ __('Home') }}
             </x-nav-link>
 
-            <x-nav-link url="{{ route('job.index') }}" :active="Route::currentRouteNamed('job.index')">
+            <x-nav-link url="{{ route('jobs.index') }}" :active="Route::currentRouteNamed('jobs.index')">
                 {{ __('All Jobs') }}
             </x-nav-link>
 
@@ -31,7 +31,7 @@
                 {{ __('Dashboard') }}
             </x-nav-link>
 
-            <x-button-link url="#" icon="edit" rounded="rounded-md">
+            <x-button-link url="{{ route('jobs.create') }}" icon="edit" rounded="rounded-md">
                 {{ __('Create Job') }}
             </x-button-link>
         </nav>
@@ -51,7 +51,7 @@
             {{ __('Home') }}
         </x-nav-link>
 
-        <x-nav-link url="{{ route('job.index') }}" :mobile="true" :active="Route::currentRouteNamed('job.index')">
+        <x-nav-link url="{{ route('jobs.index') }}" :mobile="true" :active="Route::currentRouteNamed('jobs.index')">
             {{ __('All Jobs') }}
         </x-nav-link>
 
@@ -71,7 +71,7 @@
             {{ __('Dashboard') }}
         </x-nav-link>
 
-        <x-button-link url="#" icon="edit" rounded="rounded-sm" :block="true">
+        <x-button-link url="{{ route('jobs.create') }}" icon="edit" rounded="rounded-sm" :block="true">
             {{ __('Create Job') }}
         </x-button-link>
     </nav>
