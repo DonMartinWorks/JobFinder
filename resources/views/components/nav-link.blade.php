@@ -1,11 +1,25 @@
-@props(['active'])
+@props([
+    'url' => url('/'),
+    'active' => false,
+    'icon' => null,
+    'mobile' => null,
+    'textColor' => 'text-gray-50',
+])
 
-@php
-$classes = ($active ?? false)
-            ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out'
-            : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out';
-@endphp
-
-<a {{ $attributes->merge(['class' => $classes]) }}>
-    {{ $slot }}
-</a>
+@if ($mobile)
+    <a href="{{ $url }}"
+        class="block transition-all px-4 py-2 {{$textColor}}  hover:bg-blue-700 {{ $active ? 'text-white bg-blue-700 rounded-md font-semibold' : '' }}">
+        @if ($icon)
+            <i class="fa fa-{{ $icon }} mr-1"></i>
+        @endif
+        {{ $slot }}
+    </a>
+@else
+    <a href="{{ $url }}"
+        class="{{$textColor}} hover:text-yellow-500 transition-all hover:underline underline-offset-4 py-2 {{ $active ? 'text-yellow-500 font-semibold underline underline-offset-4' : '' }}">
+        @if ($icon)
+            <i class="fa-regular fa-{{ $icon }} mr-1"></i>
+        @endif
+        {{ $slot }}
+    </a>
+@endif

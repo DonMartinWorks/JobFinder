@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('title', 100);
-            $table->string('slug', 300);
+            $table->string('slug', 300)->unique();
             $table->text('description');
             $table->integer('salary')->default(1);
             $table->string('tags')->nullable();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zipcode')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

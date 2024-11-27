@@ -36,6 +36,7 @@ class WorkFactory extends Factory
             'city' => $this->faker->city(),
             'state' => $this->faker->state(),
             'zipcode' => $this->faker->postcode(),
+            'status' => $this->faker->boolean(80),
         ];
     }
 }
