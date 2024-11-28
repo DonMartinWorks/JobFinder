@@ -4,7 +4,7 @@ Este es un proyecto postulación de empleos (simplificado) en Tailwind CSS y Alp
 
 ## Requisitos
 
--   PHP >= `8.2`
+-   PHP >= `8.2.*`
 -   Composer
 -   MySQL u otro sistema de base de datos compatible
 
@@ -121,6 +121,12 @@ php artisan serve
 Este comando inicia un servidor de desarrollo local para que puedas acceder a tu aplicación en http://localhost:8000.
 
 Comandos Útiles
+Optimize Cache: Limpia el caché de (events/views/cache/route/config/compiled)
+
+```bash
+ php artisan optimize:clear
+```
+
 Clear Cache: Limpia el caché de la aplicación
 
 ```bash

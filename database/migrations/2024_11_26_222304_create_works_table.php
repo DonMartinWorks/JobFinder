@@ -28,6 +28,12 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zipcode')->nullable();
+            $table->string('contact_email')->unique();
+            $table->string('contact_phone')->unique();
+            $table->string('company_name')->nullable();
+            $table->text('company_description')->nullable();
+            $table->string('company_logo')->nullable();
+            $table->string('company_website')->unique()->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

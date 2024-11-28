@@ -37,6 +37,12 @@ class WorkFactory extends Factory
             'city' => $this->faker->city(),
             'state' => $this->faker->state(),
             'zipcode' => $this->faker->postcode(),
+            'contact_email' => $this->faker->unique()->email(),
+            'contact_phone' => $this->faker->unique()->phoneNumber(),
+            'company_name' => $this->faker->unique()->company(),
+            'company_description' => $this->faker->unique()->paragraphs(2, true),
+            'company_logo' => $this->faker->imageUrl(200, 200, 'company', true, 'logo'),
+            'company_website' => $this->faker->unique()->url(),
             'status' => $this->faker->boolean(80),
         ];
     }

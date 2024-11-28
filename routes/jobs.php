@@ -8,10 +8,15 @@ use App\Http\Controllers\Backend\JobController;
  * All the routes for jobs.
  */
 Route::group([
-    // 'middleware' => ['web'],
+    'middleware' => ['auth'],
     'prefix' => '/job',
     'as' => 'jobs.'
 ], function () {
     Route::get('/', [JobController::class, 'index'])->name('index');
-    Route::get('/create', [JobController::class, 'create'])->name('create');
+
+    // With user
+    Route::middleware('auth')->group(function () {
+        Route::get('/create', [JobController::class, 'create'])->name('create');
+        Route::post('/create', [JobController::class, 'store'])->name('create.store');
+    });
 });

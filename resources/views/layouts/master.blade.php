@@ -28,7 +28,7 @@
     @endif
 
     <main class="container mx-auto p-4">
-        {{-- @include('components.toasts') --}}
+        @include('components.toast')
 
         {{ $slot }}
     </main>
