@@ -28,7 +28,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Toast Message
+        $message = __('Welcome!') . ' ' . Auth::user()->name;
+
+        // return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(url('/'))->with('info', $message);
     }
 
     /**

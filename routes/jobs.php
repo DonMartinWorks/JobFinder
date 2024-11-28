@@ -8,7 +8,7 @@ use App\Http\Controllers\Backend\JobController;
  * All the routes for jobs.
  */
 Route::group([
-    'middleware' => ['auth'],
+    'middleware' => ['web'],
     'prefix' => '/job',
     'as' => 'jobs.'
 ], function () {

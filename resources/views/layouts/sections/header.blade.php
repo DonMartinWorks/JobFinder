@@ -27,7 +27,7 @@
                 {{ __('Register') }}
             </x-nav-link>
 
-            <x-nav-link url="#" :active="Route::currentRouteNamed('#')" icon="address-card">
+            <x-nav-link url="{{ route('dashboard') }}" :active="Route::currentRouteNamed('dashboard')" icon="address-card">
                 {{ __('Dashboard') }}
             </x-nav-link>
 

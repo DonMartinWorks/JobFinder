@@ -1,3 +1,7 @@
+@if (session('info'))
+    <x-alert type="info" message="{{ session('info') }}" timeout="4000" />
+@endif
+
 @if (session('success'))
     <x-alert type="success" message="{{ session('success') }}" timeout="4000" />
 @endif
