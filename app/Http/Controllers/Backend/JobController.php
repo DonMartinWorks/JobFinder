@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpsertJobRequest;
+use App\Traits\FileUploadTrait;
 
 class JobController extends Controller
 {
+    use FileUploadTrait;
+
+
     /**
      * Display a listing of the resource.
      */
@@ -66,9 +70,9 @@ class JobController extends Controller
 
         # Saving the image.
         // TODO: Save the image
-        // $logoPath = $this->upsertFile($request, 'company_logo', null, 'logo', null, 'Company Logo', 'logo/');
+        $logoPath = $this->upsertFile($request, 'company_logo', null, 'logo', null, 'Company Logo', 'logo/');
 
-        // $work->company_logo = $logoPath;
+        $work->company_logo = $logoPath;
 
         $work->save();
 
