@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Work;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Traits\FileUploadTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UpsertJobRequest;
-use App\Traits\FileUploadTrait;
 
 class JobController extends Controller
 {
@@ -62,7 +63,7 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UpsertJobRequest $request)
+    public function store(UpsertJobRequest $request): RedirectResponse
     {
         $work = new Work();
 
@@ -85,25 +86,37 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Work $work): View
     {
-        //
+        return view('jobs.show')->with('work', $work);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Work $work): View
     {
-        //
+        return view('jobs.edit')->with('work', $work);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpsertJobRequest $request, Work $work): RedirectResponse
     {
-        //
+        $this->columns($work, $request);
+
+        # Saving the image.
+        $logoPath = $this->upsertFile($request, 'company_logo', $request->old_company_logo, 'logo', null, 'Company Logo', 'logo/');
+
+        $work->company_logo =  !empty($logoPath) ? $logoPath : $request->old_company_logo;
+
+        $work->save();
+
+        // Toast Message
+        $message = __('Job listing have been successfully updated!');
+
+        return redirect()->route('jobs.index')->with('success', $message);
     }
 
     /**

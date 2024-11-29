@@ -18,5 +18,8 @@ Route::group([
     Route::middleware('auth')->group(function () {
         Route::get('/create', [JobController::class, 'create'])->name('create');
         Route::post('/create', [JobController::class, 'store'])->name('create.store');
+        Route::get('/{work:slug}', [JobController::class, 'show'])->name('show');
+        Route::get('/edit/{work:slug}', [JobController::class, 'edit'])->name('edit');
+        Route::put('/edit/{work:slug}', [JobController::class, 'update'])->name('edit.update');
     });
 });

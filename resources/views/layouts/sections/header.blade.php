@@ -15,25 +15,31 @@
                 {{ __('All Jobs') }}
             </x-nav-link>
 
-            <x-nav-link url="#" :active="Route::currentRouteNamed('#')">
-                {{ __('Saved Jobs') }}
-            </x-nav-link>
+            @auth
+                <x-nav-link url="#" :active="Route::currentRouteNamed('#')">
+                    {{ __('Saved Jobs') }}
+                </x-nav-link>
+            @endauth
 
-            <x-nav-link url="{{ route('login') }}" :active="Route::currentRouteNamed('login')" icon="user">
-                {{ __('Login') }}
-            </x-nav-link>
+            @guest
+                <x-nav-link url="{{ route('login') }}" :active="Route::currentRouteNamed('login')" icon="user">
+                    {{ __('Login') }}
+                </x-nav-link>
 
-            <x-nav-link url="{{ route('register') }}" :active="Route::currentRouteNamed('register')">
-                {{ __('Register') }}
-            </x-nav-link>
+                <x-nav-link url="{{ route('register') }}" :active="Route::currentRouteNamed('register')">
+                    {{ __('Register') }}
+                </x-nav-link>
+            @endguest
 
-            <x-nav-link url="{{ route('dashboard') }}" :active="Route::currentRouteNamed('dashboard')" icon="address-card">
-                {{ __('Dashboard') }}
-            </x-nav-link>
+            @auth
+                <x-nav-link url="{{ route('dashboard') }}" :active="Route::currentRouteNamed('dashboard')" icon="address-card">
+                    {{ __('Dashboard') }}
+                </x-nav-link>
 
-            <x-button-link url="{{ route('jobs.create') }}" icon="edit" rounded="rounded-md">
-                {{ __('Create Job') }}
-            </x-button-link>
+                <x-button-link url="{{ route('jobs.create') }}" icon="edit" rounded="rounded-md">
+                    {{ __('Create Job') }}
+                </x-button-link>
+            @endauth
         </nav>
 
         <button @click="open = !open" class="text-white md:hidden flex items-center">
@@ -55,24 +61,30 @@
             {{ __('All Jobs') }}
         </x-nav-link>
 
-        <x-nav-link url="#" :mobile="true" :active="Route::currentRouteNamed('#')">
-            {{ __('Saved Jobs') }}
-        </x-nav-link>
+        @auth
+            <x-nav-link url="#" :mobile="true" :active="Route::currentRouteNamed('#')">
+                {{ __('Saved Jobs') }}
+            </x-nav-link>
+        @endauth
 
-        <x-nav-link url="{{ route('login') }}" :mobile="true" :active="Route::currentRouteNamed('login')" icon="user">
-            {{ __('Login') }}
-        </x-nav-link>
+        @guest
+            <x-nav-link url="{{ route('login') }}" :mobile="true" :active="Route::currentRouteNamed('login')" icon="user">
+                {{ __('Login') }}
+            </x-nav-link>
 
-        <x-nav-link url="{{ route('register') }}" :mobile="true" :active="Route::currentRouteNamed('register')">
-            {{ __('Register') }}
-        </x-nav-link>
+            <x-nav-link url="{{ route('register') }}" :mobile="true" :active="Route::currentRouteNamed('register')">
+                {{ __('Register') }}
+            </x-nav-link>
+        @endguest
 
-        <x-nav-link url="#" :mobile="true" :active="Route::currentRouteNamed('#')" icon="address-card">
-            {{ __('Dashboard') }}
-        </x-nav-link>
+        @auth
+            <x-nav-link url="#" :mobile="true" :active="Route::currentRouteNamed('#')" icon="address-card">
+                {{ __('Dashboard') }}
+            </x-nav-link>
 
-        <x-button-link url="{{ route('jobs.create') }}" icon="edit" rounded="rounded-sm" :block="true">
-            {{ __('Create Job') }}
-        </x-button-link>
+            <x-button-link url="{{ route('jobs.create') }}" icon="edit" rounded="rounded-sm" :block="true">
+                {{ __('Create Job') }}
+            </x-button-link>
+        @endauth
     </nav>
 </header>

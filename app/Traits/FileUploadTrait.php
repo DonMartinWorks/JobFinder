@@ -2,14 +2,13 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 trait FileUploadTrait
 {
-
     /**
      * Function to upload a file or update this file. If an old file exists, it will be removed.
      *
@@ -52,30 +51,25 @@ trait FileUploadTrait
     }
 
     /**
-     * Default storage path *
-     * @var string */
-    protected $storagePath = 'app/files/';
-
-    /** * Delete a file from the specified disk.
-     * @param string $path The path to the file to be deleted.If it is a full URL, it will be parsed to get the file name.
-     * @param string $disk The name of the disk where the file is stored. Example: 'logo'. *
-     * @param string $storage The subdirectory within the storage path where the file is located. Example: 'logo/'. *
-     * @param string $storagePath The base storage path. Default is 'app/files/'.
-     * @return void */
-    public function deleteFile(string $path, string $disk, string $storage, ?string $storagePath = null): void
+     * Delete a file from the specified disk.
+     *
+     * @param string $path The path to the file to be deleted. If it is a full URL, it will be parsed to get the file name.
+     * @param string $disk The name of the disk where the file is stored. Example: 'logo'.
+     * @param string $storage The subdirectory within the storage path where the file is located. Example: 'logo/'.
+     * @return void
+     */
+    public function deleteFile(string $path, string $disk, string $storage): void
     {
-        $storagePath = $storagePath ?? $this->storagePath;
-
         if (filter_var($path, FILTER_VALIDATE_URL)) {
             $parsedUrl = parse_url($path);
             $path = basename($parsedUrl['path']);
         }
 
-        $fullPath = storage_path($storagePath . $storage . $path);
-
+        $fullPath = storage_path('app/files/' . $storage . $path);
         Log::info(__('Checking if old file exists at: :path', ['path' => $fullPath])); // Debugging: Log full path for verification
-        if (Storage::disk($disk)->exists($storage . $path)) {
-            Storage::disk($disk)->delete($storage . $path);
+
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
             Log::info(__('Deleted old file: :path', ['path' => $fullPath])); // Debugging: Log successful deletion
         } else {
             Log::info(__('Old file does not exist or cannot be found: :path', ['path' => $fullPath])); // Debugging: Log if the file does not exist

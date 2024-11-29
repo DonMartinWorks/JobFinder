@@ -12,7 +12,8 @@
 
 <input type="hidden" name="{{ $name }}" value="0">
 
-<div class="{{ $class }}"><label for="{{ $id }}" class="{{ $class2 }}">
+<div class="{{ $class }}">
+    <label for="{{ $id }}" class="{{ $class2 }}">
         <input id="{{ $id }}" type="checkbox" class="{{ $class3 }}" name="{{ $name }}"
             @if ($checked) checked @endif value="{{ $value }}">
         @if ($label)
