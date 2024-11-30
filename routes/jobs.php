@@ -21,5 +21,6 @@ Route::group([
         Route::get('/{work:slug}', [JobController::class, 'show'])->name('show');
         Route::get('/edit/{work:slug}', [JobController::class, 'edit'])->name('edit');
         Route::put('/edit/{work:slug}', [JobController::class, 'update'])->name('edit.update');
+        Route::delete('/delete/{work}', [JobController::class, 'destroy'])->name('destroy');
     });
 });

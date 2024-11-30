@@ -20,7 +20,7 @@
                         </a>
 
                         <!-- Delete Form -->
-                        {{-- <form id="delete-form-{{ $work->id }}" action="{{ route('jobs.destroy', $work->id) }}"
+                        <form id="delete-form-{{ $work->id }}" action="{{ route('jobs.destroy', $work->id) }}"
                             method="POST" class="inline-block">
                             @csrf
                             @method('DELETE')
@@ -28,7 +28,7 @@
                                 class="delete-item transition-all px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded">
                                 {{ __('Delete') }}
                             </button>
-                        </form> --}}
+                        </form>
                         <!-- End Delete Form -->
                     </div>
                 </div>

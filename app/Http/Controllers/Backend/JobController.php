@@ -6,6 +6,7 @@ use App\Models\Work;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Traits\FileUploadTrait;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -122,8 +123,20 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        $work = Work::findOrFail($id);
+
+        // Log the action
+        Log::info(__('Attempting to delete job with ID: :id', ['id' => $id]));
+
+        $this->deleteFile($work->company_logo, 'logo', 'logo/');
+
+        $work->delete();
+
+        // Toast Message
+        $message = __('Job listing have been successfully deleted!');
+
+        return redirect()->route('jobs.index')->with('warning', $message);
     }
 }
