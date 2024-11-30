@@ -26,7 +26,7 @@ class UpsertJobRequest extends FormRequest
             'address' => ['required', 'string'],
             'city' => ['required', 'string'],
             'state' => ['required', 'string'],
-            'zipcode' => ['required', 'numeric'],
+            'zipcode' => ['required', 'regex:/^\d+(\-\d+)?$/'],
             'contact_email' => ['required', 'email', 'max:255', 'unique:works,contact_email' . ($this->work ? ',' . $this->work->id : '')],
             'contact_phone' => ['required', 'string', 'max:18', 'regex:/^(\+\d{1,3})?(\(\d{1,3}\))?[\d\s().-]+$/', 'unique:works,contact_phone' . ($this->work ? ',' . $this->work->id : '')],
             'company_name' => ['required', 'string'],

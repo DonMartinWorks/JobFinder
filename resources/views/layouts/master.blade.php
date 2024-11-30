@@ -11,11 +11,6 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite('resources/css/styles.css')
-
-    <!-- jQuery CDN -->
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-    <!-- SweetAlert2 CDN -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 </head>
 
 <body class="bg-gray-100">
@@ -33,7 +28,10 @@
         {{ $slot }}
     </main>
 
-    {{-- @include('layouts.sections.sweet-alert') --}}
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @include('layouts.sections.alert-delete-item')
 </body>
 
 </html>
