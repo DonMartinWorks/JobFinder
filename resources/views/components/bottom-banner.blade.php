@@ -15,8 +15,10 @@
             </p>
         </div>
 
-        <x-button-link url="#" icon="edit">
-            {{ __('Create Job') }}
-        </x-button-link>
+        @auth
+            <x-button-link url="{{ route('jobs.create') }}" icon="edit">
+                {{ __('Create Job') }}
+            </x-button-link>
+        @endauth
     </div>
 </section>

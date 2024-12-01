@@ -10,7 +10,7 @@
                 @method('PUT')
                 <h2 class="text-4xl capitalize text-center font-bold mb-2">{{ __('Edit job listing') }}</h2>
 
-                <h2 class="text-2xl capitalize font-bold mb-6 text-center text-gray-500">{{ __('Job info') }}</h2>
+                <h2 class="text-2xl capitalize font-bold mb-6 text-center text-gray-500">{{ __('Job info') }}&#58;&nbsp;{{$work->title}}</h2>
 
                 <!-- Job Section -->
                 @include('forms.job')

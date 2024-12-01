@@ -1,6 +1,6 @@
 @props(['work'])
 
-<div class="rounded-lg shadow-md bg-white p-4">
+<div class="rounded-lg shadow-md bg-white p-4 border">
     <div class="flex items-center space-between gap-4">
         @if ($work->company_logo)
             <img src="{{ $work->company_logo }}" alt="{{ $work->title }}" class="w-14 rounded-full" />
@@ -41,9 +41,8 @@
         </li>
 
         <li class="mb-2">
-            <strong>{{ __('Location') }}&#58;</strong>&nbsp;{{ $work->city }}&#44;&nbsp;<span
-                class="text-gray-500 font-medium underline underline-offset-2">
-                {{ $work->state }}
+            <strong>{{ __('Location') }}&#58;</strong>&nbsp;{{ $work->city }}&#44;<span class="text-gray-400">
+                <span class="underline underline-offset-2 font-medium">{{ $work->state }}</span>
             </span>
         </li>
 
@@ -55,7 +54,7 @@
     </ul>
 
     <a href="{{ route('jobs.show', $work->slug) }}"
-        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 transition-all">
+        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border hover:border-yellow-600 text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-yellow-100 hover:text-yellow-600 transition-all">
         {{ __('Details') }}
     </a>
 </div>

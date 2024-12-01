@@ -28,10 +28,19 @@
         placeholder="{{ __('tressie.stehr@romaguera.com') }}" :required="true" />
 
     <!--Company Logo -->
-    <x-inputs.file id="company_logo" name="company_logo" label="{{ __('Company Logo') }}"
-        value="{{ @$work->company_logo ? $work->company_logo : '' }}" :required="false" />
-    <input type="hidden" name="old_company_logo" value="{{ @$work->company_logo }}">
+    <div class="flex flex-col lg:flex-row">
+        <div class="flex-1">
+            @if (@$work->company_logo)
+                <x-partials.image src="{{ $work->company_logo }}" name="{{ $work->company_name }}" />
+            @endif
+        </div>
+    </div>
 
+    <div class="flex-1">
+        <x-inputs.file id="company_logo" name="company_logo" label="{{ __('Company Logo') }}"
+            value="{{ @$work->company_logo ? $work->company_logo : '' }}" :required="false" />
+        <input type="hidden" name="old_company_logo" value="{{ @$work->company_logo }}">
+    </div>
     <!-- Status -->
     <div class="grid gap-4">
         <!-- Componente de Checkbox -->

@@ -47,15 +47,20 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- Remote -->
-        <x-inputs.select id="remote" name="remote" label="{{ __('Remote') }}"
-            value="{{ old('remote', @$work->remote ? 1 : 0) }}" :options="[
-                0 => __('No'),
-                1 => __('Yes'),
-            ]" :required="true" />
+        <div class="col-span-1 lg:text-center">
+            <x-inputs.checkbox id="remote" name="remote" label="{{ __('Remote') }}" :checked="old('remote', @$work->remote)"
+                class="block my-4 mx-auto"
+                class2="w-full md:block mb-2 transition-all text-gray-700 text-md focus:text-yellow-500 focus:font-semibold hover:text-yellow-500 flex items-center mx-auto"
+                class3="p-2 mr-1 rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-600"
+                class4="text-gray-600 border-gray-300 rounded focus:ring-yellow-500 focus:ring-2" :required="true" />
+        </div>
 
         <!-- Address -->
-        <x-inputs.text id="address" name="address" label="{{ __('Address') }}"
-            value="{{ @$work->address ? $work->address : '' }}" placeholder="{{ __('123 Main St') }}" />
+        <div class="col-span-1">
+            <x-inputs.text id="address" name="address" label="{{ __('Address') }}"
+                value="{{ @$work->address ? $work->address : '' }}" placeholder="{{ __('123 Main St') }}"
+                class="mx-auto" />
+        </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

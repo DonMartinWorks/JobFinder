@@ -103,8 +103,7 @@
             </h3>
 
             @if ($work->company_logo)
-                <img src="{{ $work->company_logo }}" alt="{{ $work->contact_email }}"
-                    class="w-full lg:p-4 rounded-lg mb-4 m-auto" />
+                <x-partials.image src="{{ $work->company_logo }}" name="{{ $work->company_name }}" />
             @endif
 
             <h4 class="text-lg font-bold">{{ $work->company_name }}</h4>
