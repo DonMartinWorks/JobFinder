@@ -9,13 +9,13 @@ use App\Traits\FileUploadTrait;
 use App\Services\WorkService;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UpsertJobRequest;
 
 class JobController extends Controller
 {
-    use FileUploadTrait;
+    use FileUploadTrait, AuthorizesRequests;
 
     protected $workService;
 
@@ -77,6 +77,9 @@ class JobController extends Controller
      */
     public function edit(Work $work): View
     {
+        # Checking if the user has permission to update this resource.
+        $this->authorize('update', $work);
+
         return view('jobs.edit')->with('work', $work);
     }
 
@@ -85,6 +88,9 @@ class JobController extends Controller
      */
     public function update(UpsertJobRequest $request, Work $work): RedirectResponse
     {
+        # Checking if the user has permission to update this resource.
+        $this->authorize('update', $work);
+
         $this->workService->assignAttributes($work, $request);
 
         # Saving the image.
@@ -106,6 +112,9 @@ class JobController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         $work = Work::findOrFail($id);
+
+        # Checking if the user has permission to update this resource.
+        $this->authorize('delete', $work);
 
         // Log the action
         Log::info(__('Attempting to delete job with ID: :id', ['id' => $id]));
