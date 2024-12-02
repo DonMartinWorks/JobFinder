@@ -7,7 +7,7 @@
 @endif
 
 @if (session('warning'))
-    <x-alert type="warning" message="{{ session('warning') }}" timeout="4000" />
+    <x-alert type="warning" message="{{ session('warning') }}" timeout="6000" />
 @endif
 
 @if (session('error'))

@@ -12,7 +12,7 @@ trait FileUploadTrait
     /**
      * Function to upload a file or update this file. If an old file exists, it will be removed.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request - The HTTP request containing the data submitted by the user.
      * @param string $inputName The name of the file input field in the request.
      * @param string|null $oldPath The path to the old file. If it exists, this file will be deleted.
      * @param string $disk The name of the disk where the file will be uploaded.

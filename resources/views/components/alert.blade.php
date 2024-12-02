@@ -1,7 +1,7 @@
 @props([
     'type' => 'success',
     'message' => '',
-    'timeout' => '5000',
+    'timeout' => '3000',
 ])
 
 @if (session()->has($type))

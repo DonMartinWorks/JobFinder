@@ -6,6 +6,7 @@ use App\Models\Work;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Traits\FileUploadTrait;
+use App\Services\WorkService;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,12 @@ class JobController extends Controller
 {
     use FileUploadTrait;
 
+    protected $workService;
+
+    public function __construct(WorkService $workService)
+    {
+        $this->workService = $workService;
+    }
 
     /**
      * Display a listing of the resource.
@@ -25,32 +32,6 @@ class JobController extends Controller
         $works = Work::where('status', 1)->get();
 
         return view('jobs.index')->with('works', $works);
-    }
-
-    /**
-     * All the columns who cames from the model.
-     */
-    public function columns(Work $work, mixed $request): void
-    {
-        $work->user_id = Auth::user()->id;
-        $work->title = $request->title;
-        $work->description = $request->description;
-        $work->salary = $request->salary;
-        $work->tags = $request->tags;
-        $work->job_type = $request->job_type;
-        $work->remote = $request->remote;
-        $work->requirements = $request->requirements;
-        $work->benefits = $request->benefits;
-        $work->address = $request->address;
-        $work->city = $request->city;
-        $work->state = $request->state;
-        $work->zipcode = $request->zipcode;
-        $work->contact_email = $request->contact_email;
-        $work->contact_phone = $request->contact_phone;
-        $work->company_name = $request->company_name;
-        $work->company_description = $request->company_description;
-        $work->company_website = $request->company_website;
-        $work->status = $request->boolean('status');
     }
 
     /**
@@ -68,10 +49,9 @@ class JobController extends Controller
     {
         $work = new Work();
 
-        $this->columns($work, $request);
+        $this->workService->assignAttributes($work, $request);
 
         # Saving the image.
-        // TODO: Save the image
         $logoPath = $this->upsertFile($request, 'company_logo', null, 'logo', null, 'Company Logo', 'logo/');
 
         $work->company_logo = $logoPath;
@@ -105,12 +85,12 @@ class JobController extends Controller
      */
     public function update(UpsertJobRequest $request, Work $work): RedirectResponse
     {
-        $this->columns($work, $request);
+        $this->workService->assignAttributes($work, $request);
 
         # Saving the image.
         $logoPath = $this->upsertFile($request, 'company_logo', $request->old_company_logo, 'logo', null, 'Company Logo', 'logo/');
 
-        $work->company_logo =  !empty($logoPath) ? $logoPath : $request->old_company_logo;
+        $work->company_logo = !empty($logoPath) ? $logoPath : $request->old_company_logo;
 
         $work->save();
 
@@ -134,7 +114,7 @@ class JobController extends Controller
 
         $work->delete();
 
-        // Toast Message
+        // Mensaje de confirmación
         $message = __('Job listing have been successfully deleted!');
 
         return redirect()->route('jobs.index')->with('warning', $message);
