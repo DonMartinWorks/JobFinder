@@ -18,6 +18,6 @@ class DashboardController extends Controller
         $user = Auth::user();
         $works = Work::where('user_id', $user->id)->get();
 
-        return view('auth.dashboard.index', compact('user', 'works'));
+        return view('dashboard.index', compact('user', 'works'));
     }
 }

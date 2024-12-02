@@ -126,6 +126,12 @@ class JobController extends Controller
         // Mensaje de confirmación
         $message = __('Job listing have been successfully deleted!');
 
-        return redirect()->route('jobs.index')->with('warning', $message);
+        if (url()->previous() === route('dashboard')) {
+            return redirect()->route('dashboard')->with('warning', $message);
+        } else {
+            return redirect()->route('jobs.index')->with('warning', $message);
+        }
+
+        // return redirect()->route('jobs.index')->with('warning', $message);
     }
 }

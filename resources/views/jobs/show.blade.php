@@ -14,26 +14,7 @@
                     </a>
 
                     <div class="flex space-x-3 ml-4">
-                        @can('update', $work)
-                            <a href="{{ route('jobs.edit', $work->slug) }}" title="{{ __('Edit') }}"
-                                class="transition-all px-4 py-2 bg-gray-400 hover:bg-yellow-400 hover:text-black text-white rounded">
-                                <i class="fa-solid fa-pencil"></i>
-                            </a>
-                        @endcan
-
-                        <!-- Delete Form -->
-                        @can('delete', $work)
-                        <form id="delete-form-{{ $work->id }}" action="{{ route('jobs.destroy', $work->id) }}"
-                            method="POST" class="inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" title="{{ __('Delete') }}"
-                                class="delete-item transition-all px-4 py-2 bg-gray-400 hover:bg-red-600 text-white rounded">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
-                        @endcan
-                        <!-- End Delete Form -->
+                        <x-partials.edit-delete-button :work="$work" />
                     </div>
 
                 </div>
@@ -47,8 +28,9 @@
                     </p>
 
                     <ul class="my-4 bg-gray-100 p-4">
-                        <li class="mb-2">
-                            <strong>{{ __('Job Type') }}&#58;</strong>&nbsp;{{ $work->job_type }}
+                        <li class="flex items-center mb-2">
+                            <strong class="mr-2">{{ __('Job Type') }}&#58;</strong>
+                            <x-partials.job-type :work="$work->job_type" />
                         </li>
                         <li class="mb-2">
                             <strong>{{ __('Remote') }}&#58;</strong>&nbsp;{{ $work->remote ? __('Yes') : __('No') }}

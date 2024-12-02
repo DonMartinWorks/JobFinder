@@ -4,7 +4,7 @@
     use App\Enums\JobType;
 @endphp
 
-<div class="text-sm">
+<div class="text-sm font-medium">
     @if ($work == JobType::FullTime->value)
         <span class="text-rose-500">{{ __('Full Time') }}</span>
     @endif
