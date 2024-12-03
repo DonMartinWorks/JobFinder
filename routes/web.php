@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\Dashboard\AvatarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -22,6 +23,7 @@ Route::group([
     'as' => 'profile.'
 ], function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('update');
+    Route::put('/profile/avatar', [AvatarController::class, 'update'])->name('avatar.update');
 });
 
 require __DIR__ . '/auth.php';

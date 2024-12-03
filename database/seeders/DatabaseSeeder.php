@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
     {
         // Delete only image files from the logo directory
         $this->deleteFilesOnly('logo', '');
+        $this->deleteFilesOnly('avatar', '');
 
         $this->call(DefaultTestingUsers::class);
 
