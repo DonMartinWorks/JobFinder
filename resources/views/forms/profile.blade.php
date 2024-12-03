@@ -6,7 +6,7 @@
         value="{{ $user->name }}" :required="true" />
 
     <!-- Email -->
-    <x-inputs.text id="email" name="email" label="{{ __('Email') }}" placeholder="{{ __('matt@damon.com') }}"
+    <x-inputs.text id="email" name="email" type="email" label="{{ __('Email') }}" placeholder="{{ __('matt@damon.com') }}"
         value="{{ $user->email }}" :required="true" />
 
     <x-submit-button text="{{ __('Update') . ' ' . $user->name }}" />
