@@ -22,7 +22,7 @@
             @endauth
 
             @guest
-                <x-nav-link url="{{ route('login') }}" :active="Route::currentRouteNamed('login')" icon="user">
+                <x-nav-link url="{{ route('login') }}" :active="Route::currentRouteNamed('login')" icon="fa-solid fa-user">
                     {{ __('Login') }}
                 </x-nav-link>
 
@@ -32,11 +32,30 @@
             @endguest
 
             @auth
-                <x-nav-link url="{{ route('dashboard') }}" :active="Route::currentRouteNamed('dashboard')" icon="address-card">
-                    {{ __('Dashboard') }}
-                </x-nav-link>
+                <div class="flex items-center space-x-3">
+                    <a href="{{ route('dashboard') }}">
+                        @if (Auth::user()->avatar)
+                            <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
+                                class="w-10 h-10 rounded-full">
+                        @else
+                            <img src="{{ asset('imgs/avatar2.webp') }}" alt="{{ Auth::user()->name }}"
+                                class="w-10 h-10 rounded-full">
+                        @endif
+                    </a>
+                </div>
 
-                <x-button-link url="{{ route('jobs.create') }}" icon="edit" rounded="rounded-md">
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <x-nav-link url="{{ route('logout') }}" icon="fa-solid fa-right-from-bracket"
+                        title="{{ __('Log Out') }}"
+                        onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-nav-link>
+                </form>
+
+                <x-button-link url="{{ route('jobs.create') }}" icon="fa-solid fa-plus" rounded="rounded-md">
                     {{ __('Create Job') }}
                 </x-button-link>
             @endauth
@@ -68,7 +87,7 @@
         @endauth
 
         @guest
-            <x-nav-link url="{{ route('login') }}" :mobile="true" :active="Route::currentRouteNamed('login')" icon="user">
+            <x-nav-link url="{{ route('login') }}" :mobile="true" :active="Route::currentRouteNamed('login')" icon="fa-solid fa-user">
                 {{ __('Login') }}
             </x-nav-link>
 
@@ -78,11 +97,23 @@
         @endguest
 
         @auth
-            <x-nav-link url="#" :mobile="true" :active="Route::currentRouteNamed('#')" icon="address-card">
+            <x-nav-link url="{{ route('dashboard') }}" :mobile="true" :active="Route::currentRouteNamed('dashboard')"
+                icon="fa-regular fa-address-card">
                 {{ __('Dashboard') }}
             </x-nav-link>
 
-            <x-button-link url="{{ route('jobs.create') }}" icon="edit" rounded="rounded-sm" :block="true">
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <x-nav-link :mobile="true" url="{{ route('logout') }}" icon="fa-regular fa-circle-xmark"
+                    onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-nav-link>
+            </form>
+
+            <x-button-link url="{{ route('jobs.create') }}" icon="fa-solid fa-plus" rounded="rounded-sm"
+                :block="true">
                 {{ __('Create Job') }}
             </x-button-link>
         @endauth
