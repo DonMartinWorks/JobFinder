@@ -14,4 +14,8 @@
             <p>{{ __('No jobs avariable!') }}</p>
         @endforelse
     </div>
+
+    <div class="m-3">
+        {{ $works->links() }}
+    </div>
 </x-layouts.master>
