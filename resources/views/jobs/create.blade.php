@@ -5,7 +5,7 @@
 
     <div class="container mx-auto">
         <div class="bg-white mx-auto p-8 rounded-lg shadow-md w-full md:max-w-3xl">
-            <form method="POST" action="{{ route('jobs.create.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('job.create.store') }}" enctype="multipart/form-data">
                 @csrf
                 <h2 class="text-4xl capitalize text-center font-bold mb-2">{{ __('Create job listing') }}</h2>
 

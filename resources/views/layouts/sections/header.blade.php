@@ -55,7 +55,7 @@
                     </x-nav-link>
                 </form>
 
-                <x-button-link url="{{ route('jobs.create') }}" icon="fa-solid fa-plus" rounded="rounded-md">
+                <x-button-link url="{{ route('job.create') }}" icon="edit" rounded="rounded-sm" :block="true">
                     {{ __('Create Job') }}
                 </x-button-link>
             @endauth
@@ -112,8 +112,7 @@
                 </x-nav-link>
             </form>
 
-            <x-button-link url="{{ route('jobs.create') }}" icon="fa-solid fa-plus" rounded="rounded-sm"
-                :block="true">
+            <x-button-link url="{{ route('job.create') }}" icon="fa-solid fa-plus" rounded="rounded-sm" :block="true">
                 {{ __('Create Job') }}
             </x-button-link>
         @endauth

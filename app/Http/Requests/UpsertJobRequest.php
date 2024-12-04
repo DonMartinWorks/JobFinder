@@ -17,7 +17,7 @@ class UpsertJobRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:100'],
             'description' => ['required', 'string'],
-            'salary' => ['required', 'numeric', 'min:0'],
+            'salary' => ['required', 'integer', 'min:0', 'max:9223372036854775807'],
             'tags' => ['required', 'string'],
             'job_type' => ['required', 'string', 'in:' . implode(',', array_column(JobType::cases(), 'value'))],
             'remote' => ['required', 'boolean'],

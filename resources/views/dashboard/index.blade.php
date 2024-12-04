@@ -51,6 +51,10 @@
             @empty
                 <p class="text-xl text-center text-gray-500 font-semibold">{{ __('You have not job listing') }}</p>
             @endforelse
+
+            <div class="mt-8">
+                {{ $works->links() }}
+            </div>
         </div>
     </section>
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title', 100);
             $table->string('slug', 300)->unique();
             $table->text('description');
-            $table->integer('salary')->default(1);
+            $table->bigInteger('salary')->default(1);
             $table->string('tags')->nullable();
             $table->enum('job_type', array_map(fn($type) => $type->value, EnumJobType::cases()))->default(EnumJobType::FullTime->value);
             $table->boolean('remote')->default(0);

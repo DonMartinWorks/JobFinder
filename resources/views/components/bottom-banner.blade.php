@@ -16,7 +16,7 @@
         </div>
 
         @auth
-            <x-button-link url="{{ route('jobs.create') }}" icon="edit">
+            <x-button-link url="{{ route('job.create') }}" icon="edit">
                 {{ __('Create Job') }}
             </x-button-link>
         @endauth

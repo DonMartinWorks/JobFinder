@@ -29,8 +29,8 @@ class JobController extends Controller
      */
     public function index(): View
     {
-        // $works = Work::where('status', 1)->paginate(9);
-        $works = Work::where('status', 1)->simplePaginate(9);
+        $works = Work::where('status', 1)->paginate(9);
+        // $works = Work::where('status', 1)->simplePaginate(9);
 
         return view('jobs.index')->with('works', $works);
     }
@@ -114,7 +114,7 @@ class JobController extends Controller
     {
         $work = Work::findOrFail($id);
 
-        # Checking if the user has permission to update this resource.
+        # Checking if the user has permission to delete this resource.
         $this->authorize('delete', $work);
 
         // Log the action
@@ -124,7 +124,6 @@ class JobController extends Controller
 
         $work->delete();
 
-        // Mensaje de confirmación
         $message = __('Job listing have been successfully deleted!');
 
         if (url()->previous() === route('dashboard')) {
