@@ -13,14 +13,16 @@ class DefaultTestingUsers extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        User::factory()->create([
+        $user1 = User::factory()->create([
             'name' => 'User Worktopia',
             'email' => 'user@worktopia.com',
             'password' => Hash::make('123'),
             'email_verified_at' => Carbon::now(),
             'remember_token' => null
         ]);
+
+        return $user1;
     }
 }

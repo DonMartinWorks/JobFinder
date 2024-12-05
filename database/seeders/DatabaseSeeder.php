@@ -44,5 +44,6 @@ class DatabaseSeeder extends Seeder
         User::factory(4)->create();
 
         $this->call(WorkSeeder::class);
+        $this->call(BookmarkSeeder::class);
     }
 }
