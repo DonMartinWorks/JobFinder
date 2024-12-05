@@ -3,7 +3,7 @@
         {{ __('All Jobs') }}
     </x-slot>
 
-    <h2 class="text-2xl">
+    <h2 class="text-3xl text-center mb-4 font-bold border bg-white rounded-md border-gray-300 p-3">
         {{ __('All Jobs') }}
     </h2>
 

@@ -16,7 +16,7 @@
             </x-nav-link>
 
             @auth
-                <x-nav-link url="#" :active="Route::currentRouteNamed('#')">
+                <x-nav-link url="{{ route('job.bookmark.index') }}" :active="Route::currentRouteNamed('job.bookmark.index')" icon="fa-solid fa-floppy-disk">
                     {{ __('Saved Jobs') }}
                 </x-nav-link>
             @endauth
@@ -81,7 +81,7 @@
         </x-nav-link>
 
         @auth
-            <x-nav-link url="#" :mobile="true" :active="Route::currentRouteNamed('#')">
+            <x-nav-link url="{{ route('job.bookmark.index') }}" :active="Route::currentRouteNamed('job.bookmark.index')" icon="fa-solid fa-floppy-disk" :mobile="true">
                 {{ __('Saved Jobs') }}
             </x-nav-link>
         @endauth
