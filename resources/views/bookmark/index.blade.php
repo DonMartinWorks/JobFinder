@@ -3,17 +3,17 @@
         {{ __('Bookmark Jobs') }}
     </x-slot>
 
-    <h2 class="text-3xl text-center mb-4 font-bold border bg-white rounded-md border-gray-300 p-3">
-        {{ __('Bookmark Jobs') }}
-    </h2>
+    <x-title title="{{ __('Bookmark Jobs') }}" />
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
         @forelse ($bookmarks as $mark)
             <x-job-card :work="$mark" />
         @empty
-            <p class="text-gray-500 text-center">
-                {{ __('You have not bookmarked jobs!') }}
-            </p>
+            <div class="col-span-1 md:col-span-3 flex justify-center items-center">
+                <p class="text-blue-500 font-bold text-md text-center">
+                    {{ __('You have not bookmarked jobs!') }}
+                </p>
+            </div>
         @endforelse
     </div>
 </x-layouts.master>

@@ -3,9 +3,7 @@
         {{ __('Welcome to') }}&nbsp;{{ config('app.name', 'Laravel') }}
     </x-slot>
 
-    <h2 class="text-center text-3xl mb-4 font-bold border border-gray-300 p-3">
-        {{ __('Welcome to') }}&nbsp;{{ config('app.name', 'Laravel') }}
-    </h2>
+    <x-title title="{{ __('Welcome to') }} {{ config('app.name', 'Laravel') }}" />
 
     <x-bottom-banner />
 

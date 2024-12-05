@@ -40,8 +40,6 @@ class BookmarkController extends Controller
         if ($user->bookmarkedJobs()->where('work_id', $work->id)->exists()) {
             $message = __('This job is already associated with this bookmark');
             return back()->with('warning', $message);
-        } else {
-            $user->bookmarkedJobs()->orderBy('created_at', 'desc')->attach($work->id);
         }
 
         # Create a new bookmark
@@ -77,8 +75,18 @@ class BookmarkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Work $work)
     {
-        //
+        $user = Auth::user();
+
+        if (!$user->bookmarkedJobs()->where('work_id', $work->id)->exists()) {
+            $message = __('This job is not bookmarked');
+            return back()->with('error', $message);
+        }
+
+        # Create a new bookmark
+        $user->bookmarkedJobs()->detach($work->id);
+        $message = __('Bookmark removed successfully!');
+        return back()->with('success', $message);
     }
 }

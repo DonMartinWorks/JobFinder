@@ -116,12 +116,22 @@
             @endguest
 
             @auth
-                <form action="{{ route('job.bookmark.store', $work->id) }}" method="POST" class="mt-10">
+                <form
+                    action="{{ auth()->user()->bookmarkedJobs()->where('work_id', $work->id)->exists()? route('job.bookmark.destroy', $work->id): route('job.bookmark.store', $work->id) }}"
+                    method="POST" class="mt-10">
                     @csrf
-                    <button
-                        class="transition-all bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
-                        <i class="fa-solid fa-bookmark mr-3"></i>{{ __('Bookmark Listing') }}
-                    </button>
+                    @if (auth()->user()->bookmarkedJobs()->where('work_id', $work->id)->exists())
+                    @method('DELETE')
+                        <button
+                            class="transition-all bg-rose-500 hover:bg-rose-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-eraser mr-3"></i>{{ __('Delete Bookmark') }}
+                        </button>
+                    @else
+                        <button
+                            class="transition-all bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-bookmark mr-3"></i>{{ __('Bookmark Listing') }}
+                        </button>
+                    @endif
 
                 </form>
             @endauth

@@ -3,9 +3,7 @@
         {{ __('All Jobs') }}
     </x-slot>
 
-    <h2 class="text-3xl text-center mb-4 font-bold border bg-white rounded-md border-gray-300 p-3">
-        {{ __('All Jobs') }}
-    </h2>
+    <x-title title="{{ __('All Jobs') }}" />
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 p-1 lg:p-3 sm:p-0">
         @forelse ($works as $work)
