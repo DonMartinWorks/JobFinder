@@ -15,7 +15,8 @@ Route::group([
 ], function () {
     Route::get('/create', [JobController::class, 'create'])->name('create');
     Route::post('/create', [JobController::class, 'store'])->name('create.store');
-    Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmark.index');
+    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmark.index');
+    Route::post('/bookmarks/{work}', [BookmarkController::class, 'store'])->name('bookmark.store');
 });
 Route::group([
     'prefix' => '/job',

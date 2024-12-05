@@ -58,21 +58,23 @@ trait FileUploadTrait
      * @param string $storage The subdirectory within the storage path where the file is located. Example: 'logo/'.
      * @return void
      */
-    public function deleteFile(string $path, string $disk, string $storage): void
+    public function deleteFile(?string $path = null, string $disk, string $storage): void
     {
-        if (filter_var($path, FILTER_VALIDATE_URL)) {
-            $parsedUrl = parse_url($path);
-            $path = basename($parsedUrl['path']);
-        }
+        if (!$path == null) {
+            if (filter_var($path, FILTER_VALIDATE_URL)) {
+                $parsedUrl = parse_url($path);
+                $path = basename($parsedUrl['path']);
+            }
 
-        $fullPath = storage_path('app/files/' . $storage . $path);
-        Log::info(__('Checking if old file exists at: :path', ['path' => $fullPath])); // Debugging: Log full path for verification
+            $fullPath = storage_path('app/files/' . $storage . $path);
+            Log::info(__('Checking if old file exists at: :path', ['path' => $fullPath])); // Debugging: Log full path for verification
 
-        if (file_exists($fullPath)) {
-            unlink($fullPath);
-            Log::info(__('Deleted old file: :path', ['path' => $fullPath])); // Debugging: Log successful deletion
-        } else {
-            Log::info(__('Old file does not exist or cannot be found: :path', ['path' => $fullPath])); // Debugging: Log if the file does not exist
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+                Log::info(__('Deleted old file: :path', ['path' => $fullPath])); // Debugging: Log successful deletion
+            } else {
+                Log::info(__('Old file does not exist or cannot be found: :path', ['path' => $fullPath])); // Debugging: Log if the file does not exist
+            }
         }
     }
 }

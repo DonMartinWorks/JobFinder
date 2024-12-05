@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Work;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class BookmarkController extends Controller
 {
@@ -30,9 +33,21 @@ class BookmarkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Work $work): RedirectResponse
     {
-        //
+        $user = Auth::user();
+
+        if ($user->bookmarkedJobs()->where('work_id', $work->id)->exists()) {
+            $message = __('This job is already associated with this bookmark');
+            return back()->with('warning', $message);
+        } else {
+            $user->bookmarkedJobs()->orderBy('created_at', 'desc')->attach($work->id);
+        }
+
+        # Create a new bookmark
+        $user->bookmarkedJobs()->attach($work->id);
+        $message = __('Job bookmarked successfully!');
+        return back()->with('success', $message);
     }
 
     /**

@@ -106,9 +106,25 @@
                     class="text-blue-500">{{ __('Visit Website') }}</a>
             @endif
 
-            <a href=""
-                class="mt-10 bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center"><i
-                    class="fas fa-bookmark mr-3"></i>&nbsp;{{ __('Bookmark Listing') }}</a>
+            @guest
+                <p class="mt-10 bg-gray-200 text-gray-700 font-bold w-full py-2 px-4 rounded-full text-center">
+                    <i class="fas fa-info-circle mr-1"></i>{{ __('You must be') }}<a href="{{ route('login') }}"
+                        class="text-stone-700 hover:text-blue-600 focus:text-blue-600 transition-all">
+                        {{ __('Logged') }}
+                    </a>{{ __('in to bookmark this job') }}
+                </p>
+            @endguest
+
+            @auth
+                <form action="{{ route('job.bookmark.store', $work->id) }}" method="POST" class="mt-10">
+                    @csrf
+                    <button
+                        class="transition-all bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-bookmark mr-3"></i>{{ __('Bookmark Listing') }}
+                    </button>
+
+                </form>
+            @endauth
         </aside>
     </div>
 </x-layouts.master>

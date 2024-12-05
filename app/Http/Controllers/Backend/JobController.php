@@ -29,7 +29,8 @@ class JobController extends Controller
      */
     public function index(): View
     {
-        $works = Work::where('status', 1)->paginate(9);
+        // $works = Work::where('status', 1)->paginate(9);
+        $works = Work::orderBy('created_at', 'desc')->where('status', 1)->paginate(9);
         // $works = Work::where('status', 1)->simplePaginate(9);
 
         return view('jobs.index')->with('works', $works);
