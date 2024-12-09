@@ -68,4 +68,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Work::class, 'bookmarks')->withTimestamps();
     }
+
+    /**
+     * Get all of the applicants for the Work
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function applicants(): HasMany
+    {
+        return $this->hasMany(Applicant::class, 'user_id');
+    }
 }
