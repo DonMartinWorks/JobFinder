@@ -11,3 +11,5 @@
 .hero {
     background-image: url("../imgs/hero.jpg");
 }
+
+[x-cloak] { display: none !important; }

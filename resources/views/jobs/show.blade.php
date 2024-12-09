@@ -69,13 +69,20 @@
                     </div>
                 @endif
 
-                <p class="my-5">
-                    {{ __('Put "Job Application" as the subject of your email and attach your resume.') }}
-                </p>
-                <a href="mailto:{{ $work->contact_email }}"
-                    class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium cursor-pointer text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
-                    {{ __('Apply Now') }}
-                </a>
+                @auth
+                    <p class="my-5">
+                        {{ __('Put "Job Application" as the subject of your email and attach your resume.') }}
+                    </p>
+
+                    <x-modal-applicant-job :work="$work" />
+                @else
+                    <div class="m-3 mt-4">
+                        <p class="bg-stone-200 text-stone-700 text-lg font-bold w-full py-4 px-4 rounded-sm text-center">
+                            <i class="fas fa-info-circle mr-1"></i>{{ __('You must be logged in to apply for this job') }}
+                        </p>
+                    </div>
+                @endauth
+
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow-md mt-6">
@@ -108,10 +115,7 @@
 
             @guest
                 <p class="mt-10 bg-gray-200 text-gray-700 font-bold w-full py-2 px-4 rounded-full text-center">
-                    <i class="fas fa-info-circle mr-1"></i>{{ __('You must be') }}<a href="{{ route('login') }}"
-                        class="text-stone-700 hover:text-blue-600 focus:text-blue-600 transition-all">
-                        {{ __('Logged') }}
-                    </a>{{ __('in to bookmark this job') }}
+                    <i class="fas fa-info-circle mr-1"></i>{{ __('You must be logged in to bookmark this job') }}
                 </p>
             @endguest
 
@@ -121,7 +125,7 @@
                     method="POST" class="mt-10">
                     @csrf
                     @if (auth()->user()->bookmarkedJobs()->where('work_id', $work->id)->exists())
-                    @method('DELETE')
+                        @method('DELETE')
                         <button
                             class="transition-all bg-rose-500 hover:bg-rose-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
                             <i class="fa-solid fa-eraser mr-3"></i>{{ __('Delete Bookmark') }}
