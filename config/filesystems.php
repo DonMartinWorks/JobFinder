@@ -61,6 +61,14 @@ return [
             'throw' => false,
         ],
 
+        'resume' => [
+            'driver' => 'local',
+            'root' => storage_path('app/files/resume'),
+            'url' => env('APP_URL') . '/resume',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -90,6 +98,7 @@ return [
         public_path('storage') => storage_path('app/public'),
         public_path('logo') => storage_path('app/files/logo'),
         public_path('avatar') => storage_path('app/files/avatar'),
+        public_path('resume') => storage_path('app/files/resume'),
     ],
 
 ];

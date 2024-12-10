@@ -5,6 +5,7 @@
 /public/storage
 /public/logo
 /public/avatar
+/public/resume
 /storage/*.key
 /storage/pail
 /vendor

@@ -15,8 +15,8 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/DonMartinWorks/Worktopia
-cd Worktopia
+git clone https://github.com/DonMartinWorks/JobFinder
+cd JobFinder
 ```
 
 <p>Este comando clona el repositorio del proyecto y navega a la carpeta del proyecto.</p>

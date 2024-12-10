@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('work_id')->constrained('works')->onDelete('cascade');
             $table->string('full_name', 300);
-            $table->string('contact_phone', 18)->unique()->nullable();
-            $table->string('contact_email', 255)->unique();
+            $table->string('contact_phone', 18)->nullable();
+            $table->string('contact_email', 255);
             $table->text('message')->nullable();
             $table->string('location')->nullable();
             $table->string('resume_path');

@@ -15,7 +15,7 @@
                 {{ __('Apply For') }}: {{ $work->title }}
             </h3>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('job.applicant.store', $work->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Full Name -->
                 <x-inputs.text id="full_name" name="full_name" label="{{ __('Full Name') }}"
@@ -31,14 +31,14 @@
 
                 <!-- Message -->
                 <x-inputs.text-area id="message" name="message" cols="10" rows="2"
-                    label="{{ __('Message') }}" />
+                    label="{{ __('Message') }}" :required="true" />
 
                 <!-- Contact Phone -->
                 <x-inputs.text id="location" name="location" label="{{ __('Location') }}"
-                    placeholder="{{ __('Gotham City') }}" :required="false" />
+                    placeholder="{{ __('Gotham City') }}" :required="true" />
 
                 <!-- Contact Phone -->
-                <x-inputs.file id="resume" name="resume" label="{{ __('Resume') }}: {{ __('Only PDF files') }}"
+                <x-inputs.file id="resume_path" name="resume_path" label="{{ __('Resume') }}: {{ __('Only PDF files') }}"
                     placeholder="{{ __('Only PDF files') }}" :required="true" />
 
                 <div class="flow-foot p-6">
