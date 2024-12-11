@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index(): View
     {
         $user = Auth::user();
-        $works = Work::where('user_id', $user->id)->paginate(8);
+        $works = Work::where('user_id', $user->id)->with('applicants')->paginate(8);
 
         return view('dashboard.index', compact('user', 'works'));
     }

@@ -48,6 +48,62 @@
                         <x-partials.edit-delete-button :work="$work" :dashboard="true" />
                     </div>
                 </div>
+
+                <!-- Applicants Section -->
+                <div class="mt-2 mb-4">
+                    <h4 class="text-md text-gray-500 font-semibold mb-2">
+                        {{ __('Applicants') }}
+                    </h4>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        @forelse ($work->applicants as $applicant)
+                            <div class="mb-4 p-4 bg-white border border-blue-600 rounded-lg">
+                                <p class="text-sm text-gray-500">
+                                    <strong>{{ __('Full Name') }}</strong>:&nbsp;
+                                    <span class="block mb-2 text-blue-800">{{ $applicant->full_name }}</span>
+                                </p>
+
+                                <p class="text-sm text-gray-500">
+                                    <strong>{{ __('Contact Email') }}</strong>:&nbsp;
+                                    <span class="block mb-2 text-blue-800">{{ $applicant->contact_email }}</span>
+                                </p>
+
+                                <p class="text-sm text-gray-500">
+                                    <strong>{{ __('Contact Phone') }}</strong>:&nbsp;
+                                    <span class="block mb-2 text-blue-800">{{ $applicant->contact_phone }}</span>
+                                </p>
+
+                                <p class="text-sm text-gray-500">
+                                    <strong>{{ __('Message') }}</strong>:&nbsp;
+                                    <span class="block mb-2 text-blue-800">{{ $applicant->message }}</span>
+                                </p>
+
+                                <div class="flex justify-between items-center mt-3">
+                                    <!-- Download Button -->
+                                    <a href="{{ asset($applicant->resume_path) }}" download
+                                        title="{{ __('Download Resume') }}"
+                                        class="flex-1 flex items-center justify-center p-2 rounded-md bg-gray-400 text-gray-100 hover:bg-purple-500 hover:text-white transition-all mr-2">
+                                        <i class="fa-solid fa-download"></i>
+                                    </a>
+
+                                    <!-- Delete Button -->
+                                    <button title="{{ __('Delete Applicant') }}&nbsp;{{ $applicant->contact_email }}"
+                                        class="flex-1 flex items-center justify-center p-2 rounded-md bg-rose-600 text-white hover:bg-rose-700 transition-all">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-sm text-gray-400">
+                                {{ __('No applicants for this job') }}
+                            </p>
+                        @endforelse
+                    </div>
+                </div>
+
+
+
+
             @empty
                 <p class="text-xl text-center text-gray-500 font-semibold">{{ __('You have not job listing') }}</p>
             @endforelse
