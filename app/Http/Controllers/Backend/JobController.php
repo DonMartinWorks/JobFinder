@@ -118,6 +118,12 @@ class JobController extends Controller
         # Checking if the user has permission to delete this resource.
         $this->authorize('delete', $work);
 
+        # Check if the work has any applicants
+        if ($work->applicants()->exists()) {
+            $message = __('Cannot delete job listing because it has applicants!');
+            return redirect()->back()->with('error', $message);
+        }
+
         // Log the action
         Log::info(__('Attempting to delete job with ID: :id', ['id' => $id]));
 
@@ -132,7 +138,5 @@ class JobController extends Controller
         } else {
             return redirect()->route('jobs.index')->with('warning', $message);
         }
-
-        // return redirect()->route('jobs.index')->with('warning', $message);
     }
 }

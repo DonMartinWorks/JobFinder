@@ -3,7 +3,7 @@
     @method('PUT')
 
     <div class="mt-2 flex justify-center">
-        <img src="{{ $user->avatar ? $user->avatar : asset('imgs/avatar.svg') }}" alt="{{ $user->name }}"
+        <img src="{{ $user->avatar ? $user->avatar : asset('imgs/avatar.webp') }}" alt="{{ $user->name }}"
             class="w-32 h-32-object-cover rounded-full">
     </div>
 

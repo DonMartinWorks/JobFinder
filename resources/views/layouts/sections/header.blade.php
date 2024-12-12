@@ -33,12 +33,12 @@
 
             @auth
                 <div class="flex items-center space-x-3">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard') }}" title="{{ __('Dashboard') }}">
                         @if (Auth::user()->avatar)
                             <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
                                 class="w-10 h-10 rounded-full">
                         @else
-                            <img src="{{ asset('imgs/avatar2.webp') }}" alt="{{ Auth::user()->name }}"
+                            <img src="{{ asset('imgs/avatar.webp') }}" alt="{{ Auth::user()->name }}"
                                 class="w-10 h-10 rounded-full">
                         @endif
                     </a>
@@ -81,7 +81,8 @@
         </x-nav-link>
 
         @auth
-            <x-nav-link url="{{ route('job.bookmark.index') }}" :active="Route::currentRouteNamed('job.bookmark.index')" icon="fa-solid fa-floppy-disk" :mobile="true">
+            <x-nav-link url="{{ route('job.bookmark.index') }}" :active="Route::currentRouteNamed('job.bookmark.index')" icon="fa-solid fa-floppy-disk"
+                :mobile="true">
                 {{ __('Saved Jobs') }}
             </x-nav-link>
         @endauth
