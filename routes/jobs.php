@@ -19,7 +19,8 @@ Route::group([
     Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmark.index');
     Route::post('/bookmarks/{work}', [BookmarkController::class, 'store'])->name('bookmark.store');
     Route::delete('/bookmarks/{work}', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
-    Route::post('/{work}/apply', [ApplicantController::class, 'index'])->name('applicant.store');
+    Route::post('/{work}/apply', [ApplicantController::class, 'store'])->name('applicant.store');
+    Route::delete('/{work}/apply', [ApplicantController::class, 'destroy'])->name('applicant.destroy');
 });
 Route::group([
     'prefix' => '/job',

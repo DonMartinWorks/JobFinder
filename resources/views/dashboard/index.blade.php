@@ -89,10 +89,16 @@
                                         <i class="fa-solid fa-download"></i>
                                     </a>
 
-                                    <button title="{{ __('Delete Applicant') }}&nbsp;{{ $applicant->contact_email }}"
-                                        class="flex-1 flex items-center justify-center p-2 rounded-md bg-rose-600 text-white hover:bg-rose-700 transition-all">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
+                                    <form id="delete-form-{{ $applicant->id }}"
+                                        action="{{ route('job.applicant.destroy', $applicant->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            title="{{ __('Delete Applicant') }}&nbsp;{{ $applicant->contact_email }}"
+                                            class="delete-item flex-1 flex items-center justify-center p-2 rounded-md bg-rose-600 text-white hover:bg-rose-700 transition-all">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         @empty
