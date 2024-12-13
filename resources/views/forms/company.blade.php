@@ -18,12 +18,12 @@
         placeholder="{{ __('www.company-cool.com') }}" />
 
     <!-- Contact Phone -->
-    <x-inputs.text id="contact_phone" name="contact_phone" label="{{ __('Contact Phone') }}"
+    <x-inputs.text id="contact_phone" name="contact_phone" label="{{ __('Phone') }}"
         value="{{ @$work->contact_phone ? $work->contact_phone : '' }}" placeholder="{{ __('+1 (757) 763-1233') }}"
         :required="true" />
 
     <!-- Contact Email -->
-    <x-inputs.text id="contact_email" name="contact_email" type="email" label="{{ __('Contact Email') }}"
+    <x-inputs.text id="contact_email" name="contact_email" type="email" label="{{ __('Email') }}"
         value="{{ @$work->contact_email ? $work->contact_email : '' }}"
         placeholder="{{ __('tressie.stehr@romaguera.com') }}" :required="true" />
 

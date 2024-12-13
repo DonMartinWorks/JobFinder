@@ -64,12 +64,12 @@
                                 </p>
 
                                 <p class="text-sm text-gray-500 truncate">
-                                    <strong>{{ __('Contact Email') }}</strong>:&nbsp;
+                                    <strong>{{ __('Email') }}</strong>:&nbsp;
                                     <span class="block mb-2 text-blue-800">{{ $applicant->contact_email }}</span>
                                 </p>
 
                                 <p class="text-sm text-gray-500 truncate">
-                                    <strong>{{ __('Contact Phone') }}</strong>:&nbsp;
+                                    <strong>{{ __('Phone') }}</strong>:&nbsp;
                                     <span class="block mb-2 text-blue-800">{{ $applicant->contact_phone }}</span>
                                 </p>
 

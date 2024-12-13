@@ -71,7 +71,7 @@
 
                 @auth
                     <p class="my-5">
-                        {{ __('Put "Job Application" as the subject of your email and attach your resume.') }}
+                        {{ __('Put Job Application as the subject of your email and attach your resume.') }}
                     </p>
 
                     <x-modal-applicant-job :work="$work" />

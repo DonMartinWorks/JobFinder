@@ -22,11 +22,11 @@
                     placeholder="{{ __('Matt Damon') }}" :required="true" />
 
                 <!-- Contact Phone -->
-                <x-inputs.text id="contact_phone" name="contact_phone" label="{{ __('Contact Phone') }}"
+                <x-inputs.text id="contact_phone" name="contact_phone" label="{{ __('Phone') }}"
                     placeholder="{{ __('+15817283165') }}" :required="true" />
 
                 <!-- Contact Email -->
-                <x-inputs.text id="contact_email" name="contact_email" label="{{ __('Contact Email') }}"
+                <x-inputs.text id="contact_email" name="contact_email" label="{{ __('Email') }}"
                     placeholder="{{ __('matt@damon.com') }}" :required="true" />
 
                 <!-- Message -->

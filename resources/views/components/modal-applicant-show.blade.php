@@ -35,14 +35,14 @@
                         </div>
 
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt class="text-sm/6 font-medium text-gray-900">{{ __('Contact Phone') }}</dt>
+                            <dt class="text-sm/6 font-medium text-gray-900">{{ __('Phone') }}</dt>
                             <dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
                                 {{ $applicant->contact_phone }}
                             </dd>
                         </div>
 
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt class="text-sm/6 font-medium text-gray-900">{{ __('Contact Email') }}</dt>
+                            <dt class="text-sm/6 font-medium text-gray-900">{{ __('Email') }}</dt>
                             <dd class="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
                                 {{ $applicant->contact_email }}
                             </dd>
