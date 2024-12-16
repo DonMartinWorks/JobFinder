@@ -3,6 +3,10 @@
         {{ __('All Jobs') }}
     </x-slot>
 
+    <div class="bg-blue-900 h-24 px-4 mb-4 flex justify-center items-center rounded">
+        <x-search />
+    </div>
+
     <x-title title="{{ __('All Jobs') }}" />
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 p-1 lg:p-3 sm:p-0">

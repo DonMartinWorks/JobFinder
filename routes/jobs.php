@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\Backend\JobController;
 use App\Http\Controllers\Backend\ApplicantController;
@@ -22,6 +23,20 @@ Route::group([
     Route::post('/{work}/apply', [ApplicantController::class, 'store'])->name('applicant.store');
     Route::delete('/{work}/apply', [ApplicantController::class, 'destroy'])->name('applicant.destroy');
 });
+
+/**
+ * All the routes for jobs.
+ */
+Route::group([
+    'prefix' => '/jobs',
+    'as' => 'jobs.',
+], function () {
+    Route::get('/search', SearchController::class)->name('search');
+});
+
+/**
+ * All the routes for jobs.
+ */
 Route::group([
     'prefix' => '/job',
     'as' => 'jobs.'
@@ -34,6 +49,5 @@ Route::group([
         Route::get('/edit/{work:slug}', [JobController::class, 'edit'])->name('edit');
         Route::put('/edit/{work:slug}', [JobController::class, 'update'])->name('edit.update');
         Route::delete('/delete/{work}', [JobController::class, 'destroy'])->name('destroy');
-
     });
 });
