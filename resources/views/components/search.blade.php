@@ -1,9 +1,9 @@
 <form method="GET" action="{{ route('jobs.search') }}" class="block mx-5 space-y-2 md:mx-auto md:space-x-2">
     @csrf
-    <input type="text" name="keywords" placeholder="{{ __('Keywords') }}"
+    <input type="text" name="keywords" placeholder="{{ __('Keywords') }}" value="{{ request('keywords') }}"
         class="w-full md:w-72 px-4 py-3 focus:outline-none" />
 
-    <input type="text" name="location" placeholder="{{ __('Location') }}"
+    <input type="text" name="location" placeholder="{{ __('Location') }}" value="{{ request('location') }}"
         class="w-full md:w-72 px-4 py-3 focus:outline-none" />
 
     <button
