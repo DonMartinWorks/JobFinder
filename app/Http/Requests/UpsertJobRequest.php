@@ -23,6 +23,7 @@ class UpsertJobRequest extends FormRequest
             'remote' => ['required', 'boolean'],
             'requirements' => ['required', 'string'],
             'benefits' => ['required', 'string'],
+            'map_link' => ['nullable', 'string', 'regex:/^<iframe.*?src="https:\/\/www\.google\.com\/maps\/embed\?pb=.*?"><\/iframe>$/'],
             'address' => ['required', 'string'],
             'city' => ['required', 'string'],
             'state' => ['required', 'string'],

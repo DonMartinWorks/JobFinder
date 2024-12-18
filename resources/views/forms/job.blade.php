@@ -58,9 +58,15 @@
         <!-- Address -->
         <div class="col-span-1">
             <x-inputs.text id="address" name="address" label="{{ __('Address') }}"
-                value="{{ @$work->address ? $work->address : '' }}" placeholder="{{ __('123 Main St') }}"
-                class="mx-auto" />
+                value="{{ @$work->address ? $work->address : '' }}" placeholder="{{ __('123 Main St') }}" />
         </div>
+    </div>
+
+    <!-- Google Map Address -->
+    <div class="col-span-1">
+        <x-inputs.text-area id="map_link" name="map_link" label="{{ __('Google Map Address') }}" cols="20"
+            rows="4" value="{{ @$work->map_link ? $work->map_link : '' }}"
+            placeholder="{{ __('Only Google map links!') }}" />
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

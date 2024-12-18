@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('requirements')->nullable();
             $table->string('benefits')->nullable();
             $table->string('address')->nullable();
+            $table->text('map_link')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zipcode')->nullable();

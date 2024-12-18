@@ -50,6 +50,14 @@
                 </div>
             </div>
 
+            @if ($work->map_link)
+                <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+                    <iframe class="rounded-lg" src="{{ $work->map_link }}" width="1075" height="500"
+                        style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            @endif
+
             <div class="container mx-auto p-4">
                 @if ($work->requirements || $work->benefits)
                     <h2 class="text-xl font-semibold mb-4">{{ __('Job Details') }}</h2>
@@ -83,10 +91,6 @@
                     </div>
                 @endauth
 
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-                <div id="map"></div>
             </div>
         </section>
 

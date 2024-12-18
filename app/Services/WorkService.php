@@ -18,6 +18,12 @@ class WorkService
      */
     public function assignAttributes(Work $work, Request $request): void
     {
+        // Extract the src from the iframe
+        $mapLink = $request->input('map_link');
+        if (!empty($mapLink) && preg_match('/src="([^"]+)"/', $mapLink, $match)) {
+            $mapLink = $match[1];
+        }
+
         // Use the fill method to assign the request's values to the Work model's attributes.
         $work->fill($request->only([
             'title',
@@ -29,6 +35,7 @@ class WorkService
             'requirements',
             'benefits',
             'address',
+            'map_link',
             'city',
             'state',
             'zipcode',
@@ -44,5 +51,8 @@ class WorkService
 
         // Convert the status value from the request to a boolean and assign it to the work.
         $work->status = $request->boolean('status');
+
+        // Assign the extracted map_link
+        $work->map_link = $mapLink;
     }
 }
