@@ -9,8 +9,10 @@ use App\Traits\FileUploadTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\ApplicantUpsertRequest;
+use App\Mail\JobApplied as MailJobApplied;
 use Attribute;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicantController extends Controller
 {
@@ -40,6 +42,9 @@ class ApplicantController extends Controller
         $applicant->user_id = auth()->id();
         $applicant->work_id = $work->id;
         $applicant->save();
+
+        # Send the mail to owner
+        Mail::to($work->user->email)->send(new MailJobApplied());
 
         $message = __('Applicant have been successfully added!');
 
