@@ -44,7 +44,7 @@ class ApplicantController extends Controller
         $applicant->save();
 
         # Send the mail to owner
-        Mail::to($work->user->email)->send(new MailJobApplied());
+        Mail::to($work->user->email)->send(new MailJobApplied($applicant, $work));
 
         $message = __('Applicant have been successfully added!');
 
