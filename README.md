@@ -1,4 +1,4 @@
-# Carousel
+# JobFinder
 
 Este es un proyecto postulación de empleos (simplificado) en Tailwind CSS y Alpine Js. Este proyecto utiliza Laravel 11.
 
